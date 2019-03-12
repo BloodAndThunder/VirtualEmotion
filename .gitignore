@@ -1,0 +1,64 @@
+*~
+.DS_Store
+
+# old skool
+.svn
+
+# Exclude the build directory
+SRC/build/*
+build/*
+app/
+SRC/app/
+beta/
+SRC/beta
+
+
+# Exclude user-specific XCode 3 and 4 files
+*.mode1
+SRC/*.model1
+*.mode1v3
+SRC/*.mode1v3
+*.mode2v3
+SRC/*.mode2v3
+*.perspective
+SRC/*.perspective
+*.perspectivev3
+SRC/*.perspectivev3
+*.pbxuser
+SRC/*.pbxuser
+*.xcworkspace
+SRC/*.xcworkspace
+xcuserdata
+SRC/xcuserdata
+*.xcodeproj/ !*.xcodeproj/project.pbxproj
+SRC/*.xcodeproj/ !SRC/*.xcodeproj/project.pbxproj
+
+
+#    NB: also, whitelist the default ones, some projects need to use these
+!SRC/default.pbxuser
+!SRC/default.mode1v3
+!SRC/default.mode2v3
+!SRC/default.perspectivev3
+!default.pbxuser
+!default.mode1v3
+!default.mode2v3
+!default.perspectivev3
+
+
+# osx noise
+SRC/.DS_Store
+SRC/*.swp
+SRC/*.lock
+SRC/profile
+.DS_Store
+*.swp
+*.lock
+profile
+
+#Pod folder
+Pods/*
+SRC/Pods/*
+
+# Carthage resource
+SRC/Carthage/*
+SRC/Cartfile.resolved
