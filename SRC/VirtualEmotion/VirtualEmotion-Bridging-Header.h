@@ -3,3 +3,4 @@
 //
 
 #import "iFlyWavConverter.h"
+#import "HDCrypto.h"

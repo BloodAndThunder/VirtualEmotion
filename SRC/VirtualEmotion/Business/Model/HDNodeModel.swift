@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 enum HDNodeModelType: Int, Codable {
     case text
@@ -25,5 +26,18 @@ class HDNodeModel: Codable {
         self.image = image
         self.transform = transform
         self.type = type
+    }
+}
+
+extension HBNetwork {
+    struct sendNodeInfo: HBNetworkCustomer {
+        typealias DataResultType = HDNodeModel
+        
+        var path: String = "/Hello"
+        
+        var parameters: Parameters {
+            return ["Hello": "world"]
+        }
+        
     }
 }

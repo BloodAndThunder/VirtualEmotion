@@ -17,6 +17,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // 测试网络
+        HBNetwork.sendNodeInfo.init().request(success: { (result) in
+            HBPrint(result)
+        }, failure: { (errorString) in
+            HBPrint(errorString)
+        })
+        
         // 添加子视图
         addSubviews()
         

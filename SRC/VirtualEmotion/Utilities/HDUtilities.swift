@@ -9,6 +9,15 @@
 import UIKit
 import SceneKit
 
+func HBPrint(_ anyItem: Any...) {
+    #if DEBUG
+    print(anyItem)
+    #else
+    // 这里就什么也不做了，如果有需要做的可以在这里做些什么,可能在调试的时候你需要将下面的注释打开
+    //    print(anyItem)
+    #endif
+}
+
 /// 主线程安全调度
 ///
 /// - Parameter task: 当前需要执行的任务
