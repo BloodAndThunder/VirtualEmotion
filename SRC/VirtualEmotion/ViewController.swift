@@ -17,13 +17,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 测试网络
-        HBNetwork.sendNodeInfo.init().request(success: { (result) in
-            HBPrint(result)
-        }, failure: { (errorString) in
-            HBPrint(errorString)
-        })
-        
         // 添加子视图
         addSubviews()
         
@@ -225,6 +218,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @objc func saveLocalData() {
+        if let currentNodeData = currentNode,
+            let title = currentNodeData.title,
+            let subtitle = currentNodeData.subtitle,
+            let image = currentNodeData.image,
+            let transform = currentNodeData.transform,
+            let type = currentNodeData.type {
+            HBNetwork.sendNodeInfo.init(title: title, subtitle: subtitle, image: image, transform: transform, type: type).request(success: { (result) in
+                HBPrint(result)
+                HDToastManager.shareInstance.toast(text: "数据上传成功", delayTime: 2000, location: .middle)
+            }, failure: { (errorString) in
+                HBPrint(errorString)
+                HDToastManager.shareInstance.toast(text: "数据上传失败", delayTime: 2000, location: .middle)
+            })
+        }
         HDNodeDataIO.shareInstance.save(model: datas)
         saveButton.isHidden = true
     }
@@ -313,6 +320,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }()
     
     var datas: [HDNodeModel] = [HDNodeModel]()
+    var currentNode: HDNodeModel?
     
     lazy var radioView: QARRadioView = {
         let arRadioView = QARRadioView.init(frame: CGRect.init(x: self.view.bounds.width - 110, y: HDStatusBarHeight + 10, width: 90, height: 90))
@@ -333,8 +341,9 @@ extension ViewController: HDSelectViewDelegate {
             node.transform = transform
             node.setUniformScale(0.004)
             sceneView.scene.rootNode.addChildNode(node)
-            let model = HDNodeModel.init(title: "点击编辑文案", image: nil, transform: matrix4ToFloatArray(matrix: transform), type: .text)
+            let model = HDNodeModel.init(title: "主标题", subtitle:"副标题", image: nil, transform: matrix4ToFloatArray(matrix: transform), type: .text)
             datas.append(model)
+            currentNode = model
             radioView.addNode([node], maxRadius: 10)
         }
         else if didSelectAtIndex == 2, let transform = currentCameraMatrix() {
@@ -343,8 +352,11 @@ extension ViewController: HDSelectViewDelegate {
             let image = UIImage(contentsOfFile: Bundle.main.path(forResource: "lake", ofType: "jpg")!)
             let node = QARDetailNode(image: image!, text: "点击编辑文案", voiceUrl: voiceUrl, transform: transform)
             
-            let model = HDNodeModel.init(title: "点击编辑文案", image: image?.jpegData(compressionQuality: 1.0), transform: matrix4ToFloatArray(matrix: transform), type: .textAndImage)
+//            let model = HDNodeModel.init(title: "点击编辑文案", image: image?.jpegData(compressionQuality: 1.0), transform: matrix4ToFloatArray(matrix: transform), type: .textAndImage)
+            let model = HDNodeModel.init(title: "主标题", subtitle:"副标题", image: "http://d.hiphotos.baidu.com/image/pic/item/e61190ef76c6a7ef7d58560df3faaf51f3de669b.jpg", transform: matrix4ToFloatArray(matrix: transform), type: .textAndImage)
+
             datas.append(model)
+            currentNode = model
             
             sceneView.scene.rootNode.addChildNode(node)
             radioView.addNode([node], maxRadius: 10)

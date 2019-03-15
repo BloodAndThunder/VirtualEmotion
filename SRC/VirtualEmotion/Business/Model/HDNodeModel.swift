@@ -16,13 +16,22 @@ enum HDNodeModelType: Int, Codable {
 
 class HDNodeModel: Codable {
 
+    var id: String?
     var title: String?
-    var image: Data?
+    var subtitle: String?
+    var image: String?
     var transform: [Float]?
     var type: HDNodeModelType?
 
-    init(title: String? = "请输入文案", image: Data? = nil, transform: [Float]? = nil, type: HDNodeModelType? = .text) {
+    init(id: String? = nil,
+         title: String? = "请输入文案",
+         subtitle: String? = nil,
+         image: String? = nil,
+         transform: [Float]? = nil,
+         type: HDNodeModelType? = .text) {
+        self.id = id
         self.title = title
+        self.subtitle = subtitle
         self.image = image
         self.transform = transform
         self.type = type
@@ -31,12 +40,30 @@ class HDNodeModel: Codable {
 
 extension HBNetwork {
     struct sendNodeInfo: HBNetworkCustomer {
-        typealias DataResultType = HDNodeModel
+        typealias DataResultType = String
         
-        var path: String = "/Hello"
+        var path: String = "/node"
+        
+        let title:String
+        let subtitle:String
+        let image:String
+        let transform:[Float]
+        let type: HDNodeModelType
+
+        init(title: String, subtitle: String, image: String, transform: [Float], type: HDNodeModelType) {
+            self.title = title
+            self.subtitle = subtitle
+            self.image = image
+            self.transform = transform
+            self.type = type
+        }
         
         var parameters: Parameters {
-            return ["Hello": "world"]
+            return ["title": title,
+                    "subtitle": subtitle,
+                    "image": image,
+                    "transform": transform,
+                    "type": type.rawValue]
         }
         
     }

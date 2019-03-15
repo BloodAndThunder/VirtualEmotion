@@ -17,6 +17,8 @@ import Alamofire
 #if DEBUG
 
 let localServerBaseUrl = "http://127.0.0.1:5000/api"
+//let localServerBaseUrl = "http://39.96.219.235/api"
+
 #else
 let localServerBaseUrl = "http://39.96.219.235/api"
 #endif
@@ -32,7 +34,6 @@ extension HBNetworkCustomer {
     }
     // 基本上保持不变就可以了，增加token标签，在token存在的时候会主动追加
     var headers: [String : String] {
-        var tempHaders = ["Accept": "application/json"]
-        return tempHaders
+        return ["Accept": "application/json"]
     }
 }
