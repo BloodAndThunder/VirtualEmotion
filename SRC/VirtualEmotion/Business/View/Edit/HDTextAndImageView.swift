@@ -13,7 +13,11 @@ private enum HDTextAndImageViewFlag {
     case user
 }
 
+typealias HDTextAndImageViewCallBack = (String, UIImage) -> Void
+
 class HDTextAndImageView: UIView {
+    
+    public var completion: HDTextAndImageViewCallBack?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,6 +37,7 @@ class HDTextAndImageView: UIView {
         self.textContentView.addSubview(self.placeHolderLabel)
         self.textContentView.addSubview(self.numbersLabel)
         self.contentView.addSubview(addImageView)
+        self.contentView.addSubview(submmitButton)
     }
     
     func layoutStaticSubviews() {
@@ -44,7 +49,7 @@ class HDTextAndImageView: UIView {
             make.left.equalTo(40)
             make.right.equalTo(-40)
             make.centerY.equalToSuperview()
-            make.height.equalTo(352)
+            make.height.equalTo(406)
         }
         
         self.textContentView.snp.makeConstraints { (make) in
@@ -83,10 +88,18 @@ class HDTextAndImageView: UIView {
             make.right.equalTo(-10)
             make.height.equalTo(200)
         }
+        
+        self.submmitButton.snp.makeConstraints { (make) in
+            make.top.equalTo(self.addImageView.snp.bottom).offset(10)
+            make.left.equalTo(10)
+            make.right.equalTo(-10)
+            make.height.equalTo(44)
+        }
     }
     
     @objc private func hiddenKeyboard() {
         self.endEditing(true)
+        updateSubmmitButtonStatus()
     }
     
     @objc private func addImageFunction() {
@@ -100,10 +113,34 @@ class HDTextAndImageView: UIView {
                             self?.addImageView.image = userImage
                             self?.imageFlag = .user
                             self?.addImageView.contentMode = .scaleAspectFill
+                            self?.updateSubmmitButtonStatus()
                         }
                     }
                 })
             }
+        }
+    }
+    
+    @objc private func submmit() {
+        // 可以提交的时候，这里返回需要的数据
+        completion?(self.textView.text, self.addImageView.image!)
+    }
+    
+    private func checkDataIsReady() -> Bool {
+        if self.textView.text.count > 0, self.imageFlag == .user {
+            return true
+        }
+        return false
+    }
+    
+    private func updateSubmmitButtonStatus() {
+        if checkDataIsReady() {
+            submmitButton.isEnabled = true
+            submmitButton.backgroundColor = .white
+        }
+        else {
+            submmitButton.isEnabled = false
+            submmitButton.backgroundColor = HDButtonGrayColor
         }
     }
     
@@ -169,7 +206,20 @@ class HDTextAndImageView: UIView {
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
-
+    
+    lazy var submmitButton: UIButton = {
+       let button = UIButton.init()
+        button.setTitle("提交", for: .normal)
+        button.setTitleColor(HDButtonTextColor, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.layer.cornerRadius = 4
+        button.layer.borderColor = HDButtonGrayColor.cgColor
+        button.layer.borderWidth = HDPixelWidth
+        button.addTarget(self, action: #selector(submmit), for: .touchUpInside)
+        button.backgroundColor = HDButtonGrayColor
+        button.isEnabled = false
+        return button
+    }()
 }
 
 extension HDTextAndImageView: UITextViewDelegate {

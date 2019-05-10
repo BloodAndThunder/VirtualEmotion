@@ -41,7 +41,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let configuration = ARWorldTrackingConfiguration()
         
         // 初始化数据
-        loadData()
+//        loadData()
         
         // 加载历史数据
         HDWorldMapIO.shareInstance.read { (worldMap) in
@@ -71,7 +71,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         self.view.addSubview(saveButton)
         self.view.addSubview(saveWorldMapButton)
         self.view.addSubview(radioView)
-        self.view.addSubview(editView)
     }
     
     // 初始化数据
@@ -315,11 +314,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         return arRadioView
     }()
     
-    lazy var editView: HDTextAndImageView = {
-        let view = HDTextAndImageView.init(frame: HDScreenFrame)
-        return view
-    }()
-    
     var visibleNode: SCNNode?
     
     private var lastDistance: CGFloat = 0.0
@@ -345,7 +339,15 @@ extension ViewController: HDSelectViewDelegate {
         }
         else if didSelectAtIndex == 2, let transform = currentCameraMatrix() {
             // 在这里增加一个编辑界面用于用户post content
-            
+            let editView = HDTextAndImageView.init(frame: HDScreenFrame)
+            self.view.addSubview(editView)
+            editView.completion = {[weak self] (text, image) in
+                let voiceUrl = Bundle.main.url(forResource: "abc", withExtension: "wav")!
+                let node = QARDetailNode(image: image, text: text, voiceUrl: voiceUrl, transform: transform)
+                self?.sceneView.scene.rootNode.addChildNode(node)
+                editView.removeFromSuperview()
+            }
+            /*
             // 图文
             let voiceUrl = Bundle.main.url(forResource: "abc", withExtension: "wav")!
             let image = UIImage(contentsOfFile: Bundle.main.path(forResource: "lake", ofType: "jpg")!)
@@ -368,6 +370,7 @@ extension ViewController: HDSelectViewDelegate {
             //                node.addChildNode(tmpNode)
             //                tmpNode.runAction(SCNAction.playAudio(audio.curSource!, waitForCompletion: true))
             //            })
+ */
         }
     }
     
@@ -387,8 +390,9 @@ extension ViewController {
         
         let viewCenter = sceneView.center
         visibleNode =  nil
-        // 当前视图中，可视化的对象
-        if let visibleNode = sceneView.hitTest(viewCenter, options: nil).first?.node {
+        // 当前视图中，可视化的对象，同时需要检测节点的类型
+        if let visibleNode = sceneView.hitTest(viewCenter, options: nil).first?.node,
+            visibleNode.name == "QARNode" {
             // 能找到对应的虚拟节点
             self.visibleNode = visibleNode
         }
