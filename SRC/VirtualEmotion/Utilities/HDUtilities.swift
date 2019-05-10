@@ -33,8 +33,8 @@ public func DispatchToMain(task: (()->())?) {
 }
 
 extension UIColor {
-    convenience init(hexColor: String, alpha: Float = 1.0) {
-        var cString:String = hexColor.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+    convenience init(hex: String, alpha: Float = 1.0) {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
         if (cString.hasPrefix("#")) {
             cString.remove(at: cString.startIndex)
@@ -213,5 +213,54 @@ func /= (left: inout SCNVector3, right: Float) {
 
 func *= (left: inout SCNVector3, right: Float) {
     left = left * right
+}
+
+// MARK: - 查找顶层控制器、
+// 获取顶层控制器 根据window
+func getTopVC(completion: @escaping (_ vc: UIViewController?) -> Void) {
+    DispatchToMain {
+        var window = UIApplication.shared.keyWindow
+        //是否为当前显示的window
+        if window?.windowLevel != UIWindow.Level.normal{
+            let windows = UIApplication.shared.windows
+            for  windowTemp in windows{
+                if windowTemp.windowLevel == UIWindow.Level.normal{
+                    window = windowTemp
+                    break
+                }
+            }
+        }
+        
+        let vc = window?.rootViewController
+        completion(getTopVC(withCurrentVC: vc))
+    }
+}
+
+//根据控制器获取 顶层控制器
+func getTopVC(withCurrentVC VC :UIViewController?) -> UIViewController? {
+    
+    if VC == nil {
+        HBPrint("找不到顶层控制器")
+        return nil
+    }
+    
+    if let presentVC = VC?.presentedViewController {
+        //modal出来的 控制器
+        return getTopVC(withCurrentVC: presentVC)
+    }
+    else if let tabVC = VC as? UITabBarController {
+        // tabBar 的跟控制器
+        if let selectVC = tabVC.selectedViewController {
+            return getTopVC(withCurrentVC: selectVC)
+        }
+        return nil
+    } else if let naiVC = VC as? UINavigationController {
+        // 控制器是 nav
+        return getTopVC(withCurrentVC:naiVC.visibleViewController)
+    }
+    else {
+        // 返回顶控制器
+        return VC
+    }
 }
 

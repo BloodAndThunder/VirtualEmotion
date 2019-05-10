@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C0802A3D228415B300B3DF32 /* HDTextAnImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0802A3C228415B300B3DF32 /* HDTextAnImageView.swift */; };
 		C0802A40228421DB00B3DF32 /* HDPreConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0802A3F228421DB00B3DF32 /* HDPreConfig.swift */; };
+		C0802A5E228527F500B3DF32 /* HBPhotoPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0802A5D228527F500B3DF32 /* HBPhotoPickerVC.swift */; };
+		C0802A6222852EC400B3DF32 /* HDTextAndImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0802A6122852EC400B3DF32 /* HDTextAndImageView.swift */; };
 		C09BF89B223924BF0017CA74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF89A223924BF0017CA74 /* AppDelegate.swift */; };
 		C09BF89D223924BF0017CA74 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C09BF89C223924BF0017CA74 /* art.scnassets */; };
 		C09BF89F223924BF0017CA74 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF89E223924BF0017CA74 /* ViewController.swift */; };
@@ -89,8 +90,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C0802A3C228415B300B3DF32 /* HDTextAnImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDTextAnImageView.swift; sourceTree = "<group>"; };
 		C0802A3F228421DB00B3DF32 /* HDPreConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDPreConfig.swift; sourceTree = "<group>"; };
+		C0802A5D228527F500B3DF32 /* HBPhotoPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBPhotoPickerVC.swift; sourceTree = "<group>"; };
+		C0802A6122852EC400B3DF32 /* HDTextAndImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDTextAndImageView.swift; sourceTree = "<group>"; };
 		C09BF897223924BF0017CA74 /* VirtualEmotion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualEmotion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C09BF89A223924BF0017CA74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C09BF89C223924BF0017CA74 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -197,7 +199,7 @@
 		C0802A3B22840CB200B3DF32 /* Edit */ = {
 			isa = PBXGroup;
 			children = (
-				C0802A3C228415B300B3DF32 /* HDTextAnImageView.swift */,
+				C0802A6122852EC400B3DF32 /* HDTextAndImageView.swift */,
 			);
 			path = Edit;
 			sourceTree = "<group>";
@@ -208,6 +210,22 @@
 				C0802A3F228421DB00B3DF32 /* HDPreConfig.swift */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		C0802A552285248200B3DF32 /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				C0802A562285249D00B3DF32 /* Controller */,
+			);
+			path = ImagePicker;
+			sourceTree = "<group>";
+		};
+		C0802A562285249D00B3DF32 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C0802A5D228527F500B3DF32 /* HBPhotoPickerVC.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		C09BF88E223924BF0017CA74 = {
@@ -260,6 +278,7 @@
 		C09BF8B0223925190017CA74 /* UICommonKit */ = {
 			isa = PBXGroup;
 			children = (
+				C0802A552285248200B3DF32 /* ImagePicker */,
 				C0802A3E228421C000B3DF32 /* Config */,
 				C09BF8B1223925190017CA74 /* Toast */,
 				C09BF8B3223925190017CA74 /* HDScreenInfo.swift */,
@@ -606,7 +625,6 @@
 			files = (
 				C09BF89F223924BF0017CA74 /* ViewController.swift in Sources */,
 				C09BF93B2239251A0017CA74 /* UIImageView+AlamofireImage.swift in Sources */,
-				C0802A3D228415B300B3DF32 /* HDTextAnImageView.swift in Sources */,
 				C09BF9352239251A0017CA74 /* NSString+Base64.m in Sources */,
 				C09BF9362239251A0017CA74 /* NSData+CommonCrypto.m in Sources */,
 				C09BF9342239251A0017CA74 /* AES.m in Sources */,
@@ -632,6 +650,7 @@
 				C09BF9122239251A0017CA74 /* HDScreenInfo.swift in Sources */,
 				C09BF9412239251A0017CA74 /* Alamofire+HBNetworkApiNew.swift in Sources */,
 				C09BF9302239251A0017CA74 /* TTSConfig.m in Sources */,
+				C0802A6222852EC400B3DF32 /* HDTextAndImageView.swift in Sources */,
 				C09BF9402239251A0017CA74 /* HBNetworkResultType.swift in Sources */,
 				C09BF9392239251A0017CA74 /* HBNetworkCustomer+Promise.swift in Sources */,
 				C09BF91A2239251A0017CA74 /* HDWorldMapIO.swift in Sources */,
@@ -647,6 +666,7 @@
 				C09BF9282239251A0017CA74 /* NSString+Hash.m in Sources */,
 				C09BF93E2239251A0017CA74 /* Alamofire+HBNetworkAPI.swift in Sources */,
 				C09BF9232239251A0017CA74 /* DetailSKScene.swift in Sources */,
+				C0802A5E228527F500B3DF32 /* HBPhotoPickerVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

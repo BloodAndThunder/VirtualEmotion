@@ -17,7 +17,7 @@ class DetailSKScene: SKScene {
     init(image: UIImage?, text: String?, voiceUrl: URL?, size: CGSize) {
         super.init(size: size)
         self.scaleMode = .aspectFit
-        self.backgroundColor = UIColor(hexColor: "#0463A5", alpha: 0.6)
+        self.backgroundColor = UIColor(hex: "#0463A5", alpha: 0.6)
         self.isUserInteractionEnabled = true
         
         let shape = SKShapeNode()

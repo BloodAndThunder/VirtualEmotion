@@ -8,7 +8,12 @@
 
 import UIKit
 
-class HDTextAnImageView: UIView {
+private enum HDTextAndImageViewFlag {
+    case add
+    case user
+}
+
+class HDTextAndImageView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,10 +41,10 @@ class HDTextAnImageView: UIView {
         }
         
         self.contentView.snp.makeConstraints { (make) in
-            make.top.equalTo(100)
             make.left.equalTo(40)
             make.right.equalTo(-40)
-            make.bottom.equalTo(-100)
+            make.centerY.equalToSuperview()
+            make.height.equalTo(352)
         }
         
         self.textContentView.snp.makeConstraints { (make) in
@@ -85,8 +90,24 @@ class HDTextAnImageView: UIView {
     }
     
     @objc private func addImageFunction() {
-        
+        let photoPicker = HBPhotoPickerVC()
+        getTopVC { (topvc) in
+            if let top = topvc {
+                top.present(photoPicker, animated: false, completion: {
+                    photoPicker.formAlbum()
+                    photoPicker.selectedPhoto = {[weak self] image in
+                        if let userImage = image {
+                            self?.addImageView.image = userImage
+                            self?.imageFlag = .user
+                            self?.addImageView.contentMode = .scaleAspectFill
+                        }
+                    }
+                })
+            }
+        }
     }
+    
+    private var imageFlag: HDTextAndImageViewFlag = .add
     
     lazy var maskControl: UIControl = {
        let control = UIControl.init()
@@ -107,7 +128,7 @@ class HDTextAnImageView: UIView {
         view.backgroundColor = UIColor.white
         view.layer.cornerRadius = 2
         view.clipsToBounds = true
-        view.layer.borderColor = UIColor.init(hexColor: "D5D5D5").cgColor
+        view.layer.borderColor = UIColor.init(hex: "D5D5D5").cgColor
         view.layer.borderWidth = HDPixelWidth
         return view
     }()
@@ -116,7 +137,7 @@ class HDTextAnImageView: UIView {
         let view = UITextView.init()
         view.backgroundColor = UIColor.white
         view.font = UIFont.systemFont(ofSize: 14)
-        view.textColor = UIColor.init(hexColor: "333333")
+        view.textColor = UIColor.init(hex: "333333")
         view.delegate = self
         return view
     }()
@@ -125,7 +146,7 @@ class HDTextAnImageView: UIView {
         let view = UILabel.init()
         view.font = UIFont.systemFont(ofSize: 14)
         view.backgroundColor = UIColor.white
-        view.textColor = UIColor.init(hexColor: "9B9B9B")
+        view.textColor = UIColor.init(hex: "9B9B9B")
         view.text = "此时此刻，留下足迹..."
         return view
     }()
@@ -134,7 +155,7 @@ class HDTextAnImageView: UIView {
         let view = UILabel.init()
         view.font = UIFont.systemFont(ofSize: 14)
         view.backgroundColor = UIColor.white
-        view.textColor = UIColor.init(hexColor: "9B9B9B")
+        view.textColor = UIColor.init(hex: "9B9B9B")
         view.text = "0/200"
         return view
     }()
@@ -143,12 +164,15 @@ class HDTextAnImageView: UIView {
         let imageView = UIImageView.init(image: #imageLiteral(resourceName: "AddImage"))
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(addImageFunction))
         imageView.addGestureRecognizer(tap)
+        imageView.contentMode = .center
+        imageView.clipsToBounds = true
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
 
 }
 
-extension HDTextAnImageView: UITextViewDelegate {
+extension HDTextAndImageView: UITextViewDelegate {
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         self.placeHolderLabel.isHidden = true
         return true

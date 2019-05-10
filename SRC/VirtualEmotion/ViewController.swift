@@ -315,8 +315,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         return arRadioView
     }()
     
-    lazy var editView: HDTextAnImageView = {
-        let view = HDTextAnImageView.init(frame: HDScreenFrame)
+    lazy var editView: HDTextAndImageView = {
+        let view = HDTextAndImageView.init(frame: HDScreenFrame)
         return view
     }()
     
@@ -398,6 +398,7 @@ extension ViewController {
         }
         
         
+        /*
         // 触摸事件处理
         let hitResults = sceneView.hitTest(location, options: nil)
         if let result = hitResults.first {
@@ -405,6 +406,7 @@ extension ViewController {
         } else {
             // 弹出浮层
         }
+ */
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {

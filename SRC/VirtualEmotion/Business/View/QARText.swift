@@ -64,7 +64,7 @@ class QARText: SCNNode {
         self.curVoiceUrl = voiceUrl
     
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 280, height: 200))
-        view.backgroundColor = UIColor(hexColor: "#0463A5", alpha: 0.5)
+        view.backgroundColor = UIColor(hex: "#0463A5", alpha: 0.5)
         view.layer.borderColor = UIColor.white.cgColor
         view.layer.borderWidth = 0.5
 

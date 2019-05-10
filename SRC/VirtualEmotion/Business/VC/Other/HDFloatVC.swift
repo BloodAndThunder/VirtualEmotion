@@ -261,7 +261,7 @@ class HDFloatVC: HDBaseVC, UITextViewDelegate, AVAudioPlayerDelegate, UIImagePic
         
         recordButton = UIButton(type: UIButton.ButtonType.custom)
         recordButton?.frame = CGRect(x: 30, y: 430, width: 60, height: 40)
-        recordButton?.backgroundColor = UIColor(hexColor: "0x00bcd4", alpha: 1.0)
+        recordButton?.backgroundColor = UIColor(hex: "0x00bcd4", alpha: 1.0)
         recordButton?.tintColor = UIColor.white
         recordButton?.layer.cornerRadius = 4.0
         recordButton?.setTitle("按住留言", for: .normal)
@@ -270,7 +270,7 @@ class HDFloatVC: HDBaseVC, UITextViewDelegate, AVAudioPlayerDelegate, UIImagePic
         
         playButton = UIButton(type: UIButton.ButtonType.custom)
         playButton?.frame = CGRect(x: 135, y: 430, width: 60, height: 40)
-        playButton?.backgroundColor = UIColor(hexColor: "0x00bcd4", alpha: 1.0)
+        playButton?.backgroundColor = UIColor(hex: "0x00bcd4", alpha: 1.0)
         playButton?.tintColor = UIColor.white
         playButton?.layer.cornerRadius = 4.0
         playButton?.setTitle("听声音", for: .normal)
@@ -279,7 +279,7 @@ class HDFloatVC: HDBaseVC, UITextViewDelegate, AVAudioPlayerDelegate, UIImagePic
         
         let transButton = UIButton(type: UIButton.ButtonType.custom)
         transButton.frame = CGRect(x: 230, y: 430, width: 60, height: 40)
-        transButton.backgroundColor = UIColor(hexColor: "0x00bcd4", alpha: 1.0)
+        transButton.backgroundColor = UIColor(hex: "0x00bcd4", alpha: 1.0)
         transButton.tintColor = UIColor.white
         transButton.layer.cornerRadius = 4.0
         transButton.setTitle("转声音", for: .normal)
