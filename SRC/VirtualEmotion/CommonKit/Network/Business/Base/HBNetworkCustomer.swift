@@ -16,8 +16,10 @@ import Alamofire
 
 #if DEBUG
 
-let localServerBaseUrl = "http://127.0.0.1:5000/api"
-//let localServerBaseUrl = "http://39.96.219.235/api"
+// 本地调试
+//let localServerBaseUrl = "http://127.0.0.1:5000/api"
+// 阿里云公网ip
+let localServerBaseUrl = "http://39.96.219.235/api"
 
 #else
 let localServerBaseUrl = "http://39.96.219.235/api"

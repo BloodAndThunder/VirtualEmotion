@@ -214,3 +214,4 @@ func /= (left: inout SCNVector3, right: Float) {
 func *= (left: inout SCNVector3, right: Float) {
     left = left * right
 }
+

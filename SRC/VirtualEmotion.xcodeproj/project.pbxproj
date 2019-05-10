@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C0802A3D228415B300B3DF32 /* HDTextAnImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0802A3C228415B300B3DF32 /* HDTextAnImageView.swift */; };
+		C0802A40228421DB00B3DF32 /* HDPreConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0802A3F228421DB00B3DF32 /* HDPreConfig.swift */; };
 		C09BF89B223924BF0017CA74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF89A223924BF0017CA74 /* AppDelegate.swift */; };
 		C09BF89D223924BF0017CA74 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C09BF89C223924BF0017CA74 /* art.scnassets */; };
 		C09BF89F223924BF0017CA74 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF89E223924BF0017CA74 /* ViewController.swift */; };
@@ -87,6 +89,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C0802A3C228415B300B3DF32 /* HDTextAnImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDTextAnImageView.swift; sourceTree = "<group>"; };
+		C0802A3F228421DB00B3DF32 /* HDPreConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDPreConfig.swift; sourceTree = "<group>"; };
 		C09BF897223924BF0017CA74 /* VirtualEmotion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualEmotion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C09BF89A223924BF0017CA74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C09BF89C223924BF0017CA74 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -190,6 +194,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C0802A3B22840CB200B3DF32 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				C0802A3C228415B300B3DF32 /* HDTextAnImageView.swift */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		C0802A3E228421C000B3DF32 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				C0802A3F228421DB00B3DF32 /* HDPreConfig.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		C09BF88E223924BF0017CA74 = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +260,7 @@
 		C09BF8B0223925190017CA74 /* UICommonKit */ = {
 			isa = PBXGroup;
 			children = (
+				C0802A3E228421C000B3DF32 /* Config */,
 				C09BF8B1223925190017CA74 /* Toast */,
 				C09BF8B3223925190017CA74 /* HDScreenInfo.swift */,
 				C09BF8B4223925190017CA74 /* AlertView */,
@@ -331,6 +352,7 @@
 		C09BF8C92239251A0017CA74 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C0802A3B22840CB200B3DF32 /* Edit */,
 				C09BF8CA2239251A0017CA74 /* QARText.swift */,
 				C09BF8CB2239251A0017CA74 /* QARNode.swift */,
 				C09BF8CC2239251A0017CA74 /* QARDetailNode.swift */,
@@ -584,6 +606,7 @@
 			files = (
 				C09BF89F223924BF0017CA74 /* ViewController.swift in Sources */,
 				C09BF93B2239251A0017CA74 /* UIImageView+AlamofireImage.swift in Sources */,
+				C0802A3D228415B300B3DF32 /* HDTextAnImageView.swift in Sources */,
 				C09BF9352239251A0017CA74 /* NSString+Base64.m in Sources */,
 				C09BF9362239251A0017CA74 /* NSData+CommonCrypto.m in Sources */,
 				C09BF9342239251A0017CA74 /* AES.m in Sources */,
@@ -605,6 +628,7 @@
 				C09BF89B223924BF0017CA74 /* AppDelegate.swift in Sources */,
 				C09BF91D2239251A0017CA74 /* HDBaseVC.swift in Sources */,
 				C09BF9192239251A0017CA74 /* HDNodeDataIO.swift in Sources */,
+				C0802A40228421DB00B3DF32 /* HDPreConfig.swift in Sources */,
 				C09BF9122239251A0017CA74 /* HDScreenInfo.swift in Sources */,
 				C09BF9412239251A0017CA74 /* Alamofire+HBNetworkApiNew.swift in Sources */,
 				C09BF9302239251A0017CA74 /* TTSConfig.m in Sources */,
@@ -776,6 +800,7 @@
 					"$(PROJECT_DIR)/VirtualEmotion/3rd",
 				);
 				INFOPLIST_FILE = VirtualEmotion/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -800,6 +825,7 @@
 					"$(PROJECT_DIR)/VirtualEmotion/3rd",
 				);
 				INFOPLIST_FILE = VirtualEmotion/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
