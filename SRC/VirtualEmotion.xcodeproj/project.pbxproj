@@ -21,7 +21,6 @@
 		C09BF9122239251A0017CA74 /* HDScreenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF8B3223925190017CA74 /* HDScreenInfo.swift */; };
 		C09BF9132239251A0017CA74 /* HBAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF8B5223925190017CA74 /* HBAlertView.swift */; };
 		C09BF9142239251A0017CA74 /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09BF8B8223925190017CA74 /* iflyMSC.framework */; };
-		C09BF9172239251A0017CA74 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09BF8BB223925190017CA74 /* SnapKit.framework */; };
 		C09BF9192239251A0017CA74 /* HDNodeDataIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF8BF2239251A0017CA74 /* HDNodeDataIO.swift */; };
 		C09BF91A2239251A0017CA74 /* HDWorldMapIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF8C02239251A0017CA74 /* HDWorldMapIO.swift */; };
 		C09BF91B2239251A0017CA74 /* HDFloatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BF8C32239251A0017CA74 /* HDFloatVC.swift */; };
@@ -66,11 +65,19 @@
 		C09BF942223925820017CA74 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09BF8BA223925190017CA74 /* AlamofireImage.framework */; };
 		C09BF943223925820017CA74 /* AlamofireImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C09BF8BA223925190017CA74 /* AlamofireImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C09BF945223925820017CA74 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C09BF8BB223925190017CA74 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C09BF946223925820017CA74 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09BF8BC223925190017CA74 /* Alamofire.framework */; };
 		C09BF947223925820017CA74 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C09BF8BC223925190017CA74 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C09BF94B223925B90017CA74 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C09BF94A223925B90017CA74 /* libz.tbd */; };
 		C09BF94D223925C00017CA74 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C09BF94C223925C00017CA74 /* libc++.tbd */; };
 		C09BF94F223925C90017CA74 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C09BF94E223925C90017CA74 /* libicucore.tbd */; };
+		C0D83E49230BEA9F00234BB4 /* ViewController+SelectItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D83E48230BEA9F00234BB4 /* ViewController+SelectItem.swift */; };
+		C0D83E4B230BEB0300234BB4 /* ViewController+Touch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D83E4A230BEB0300234BB4 /* ViewController+Touch.swift */; };
+		C0D83E4D230BEB5B00234BB4 /* ViewController+Pop.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D83E4C230BEB5B00234BB4 /* ViewController+Pop.swift */; };
+		C0D83E56230BFA2300234BB4 /* HDVirtualNodeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D83E55230BFA2300234BB4 /* HDVirtualNodeListVC.swift */; };
+		C0D83E5A230BFA3F00234BB4 /* HDPersonalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D83E59230BFA3F00234BB4 /* HDPersonalVC.swift */; };
+		C0D83E5E230C072D00234BB4 /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0D83E5C230C072D00234BB4 /* Bugly.framework */; };
+		C0D83E60230C075000234BB4 /* FMDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0D83E5B230C072C00234BB4 /* FMDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C0D83E63230C086D00234BB4 /* HDSQLiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D83E62230C086D00234BB4 /* HDSQLiteManager.swift */; };
+		C0D83E65230C202D00234BB4 /* HDWorldMapNodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D83E64230C202D00234BB4 /* HDWorldMapNodeModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -83,6 +90,7 @@
 				C09BF943223925820017CA74 /* AlamofireImage.framework in Embed Frameworks */,
 				C09BF947223925820017CA74 /* Alamofire.framework in Embed Frameworks */,
 				C09BF945223925820017CA74 /* SnapKit.framework in Embed Frameworks */,
+				C0D83E60230C075000234BB4 /* FMDB.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,6 +184,15 @@
 		C09BF94A223925B90017CA74 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		C09BF94C223925C00017CA74 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		C09BF94E223925C90017CA74 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		C0D83E48230BEA9F00234BB4 /* ViewController+SelectItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+SelectItem.swift"; sourceTree = "<group>"; };
+		C0D83E4A230BEB0300234BB4 /* ViewController+Touch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Touch.swift"; sourceTree = "<group>"; };
+		C0D83E4C230BEB5B00234BB4 /* ViewController+Pop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Pop.swift"; sourceTree = "<group>"; };
+		C0D83E55230BFA2300234BB4 /* HDVirtualNodeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDVirtualNodeListVC.swift; sourceTree = "<group>"; };
+		C0D83E59230BFA3F00234BB4 /* HDPersonalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDPersonalVC.swift; sourceTree = "<group>"; };
+		C0D83E5B230C072C00234BB4 /* FMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FMDB.framework; sourceTree = "<group>"; };
+		C0D83E5C230C072D00234BB4 /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
+		C0D83E62230C086D00234BB4 /* HDSQLiteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSQLiteManager.swift; sourceTree = "<group>"; };
+		C0D83E64230C202D00234BB4 /* HDWorldMapNodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDWorldMapNodeModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,8 +205,7 @@
 				C09BF94B223925B90017CA74 /* libz.tbd in Frameworks */,
 				C09BF9142239251A0017CA74 /* iflyMSC.framework in Frameworks */,
 				C09BF942223925820017CA74 /* AlamofireImage.framework in Frameworks */,
-				C09BF9172239251A0017CA74 /* SnapKit.framework in Frameworks */,
-				C09BF946223925820017CA74 /* Alamofire.framework in Frameworks */,
+				C0D83E5E230C072D00234BB4 /* Bugly.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +264,7 @@
 		C09BF899223924BF0017CA74 /* VirtualEmotion */ = {
 			isa = PBXGroup;
 			children = (
+				C0D83E46230BE9F200234BB4 /* New Group */,
 				C09BF8B7223925190017CA74 /* 3rd */,
 				C09BF8BD2239251A0017CA74 /* Business */,
 				C09BF8F02239251A0017CA74 /* CommonKit */,
@@ -258,7 +275,6 @@
 				C09BF8B6223925190017CA74 /* VirtualEmotion-Bridging-Header.h */,
 				C09BF89A223924BF0017CA74 /* AppDelegate.swift */,
 				C09BF89C223924BF0017CA74 /* art.scnassets */,
-				C09BF89E223924BF0017CA74 /* ViewController.swift */,
 				C09BF8A0223924BF0017CA74 /* Main.storyboard */,
 				C09BF8A3223924C00017CA74 /* Assets.xcassets */,
 				C09BF8A5223924C00017CA74 /* LaunchScreen.storyboard */,
@@ -306,6 +322,8 @@
 		C09BF8B7223925190017CA74 /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				C0D83E5C230C072D00234BB4 /* Bugly.framework */,
+				C0D83E5B230C072C00234BB4 /* FMDB.framework */,
 				C09BF8B8223925190017CA74 /* iflyMSC.framework */,
 				C09BF8BA223925190017CA74 /* AlamofireImage.framework */,
 				C09BF8BB223925190017CA74 /* SnapKit.framework */,
@@ -317,6 +335,7 @@
 		C09BF8BD2239251A0017CA74 /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				C0D83E61230C07B200234BB4 /* Sqlite */,
 				C09BF8BE2239251A0017CA74 /* FileIO */,
 				C09BF8C12239251A0017CA74 /* VC */,
 				C09BF8C72239251A0017CA74 /* Model */,
@@ -337,6 +356,9 @@
 		C09BF8C12239251A0017CA74 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				C0D83E53230BF9FC00234BB4 /* Person */,
+				C0D83E51230BF9D900234BB4 /* WorldMapList */,
+				C0D83E47230BEA2700234BB4 /* AR */,
 				C09BF8C22239251A0017CA74 /* Other */,
 				C09BF8C52239251A0017CA74 /* Base */,
 			);
@@ -364,6 +386,7 @@
 			isa = PBXGroup;
 			children = (
 				C09BF8C82239251A0017CA74 /* HDNodeModel.swift */,
+				C0D83E64230C202D00234BB4 /* HDWorldMapNodeModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -544,6 +567,48 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C0D83E46230BE9F200234BB4 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		C0D83E47230BEA2700234BB4 /* AR */ = {
+			isa = PBXGroup;
+			children = (
+				C09BF89E223924BF0017CA74 /* ViewController.swift */,
+				C0D83E48230BEA9F00234BB4 /* ViewController+SelectItem.swift */,
+				C0D83E4A230BEB0300234BB4 /* ViewController+Touch.swift */,
+				C0D83E4C230BEB5B00234BB4 /* ViewController+Pop.swift */,
+			);
+			path = AR;
+			sourceTree = "<group>";
+		};
+		C0D83E51230BF9D900234BB4 /* WorldMapList */ = {
+			isa = PBXGroup;
+			children = (
+				C0D83E55230BFA2300234BB4 /* HDVirtualNodeListVC.swift */,
+			);
+			path = WorldMapList;
+			sourceTree = "<group>";
+		};
+		C0D83E53230BF9FC00234BB4 /* Person */ = {
+			isa = PBXGroup;
+			children = (
+				C0D83E59230BFA3F00234BB4 /* HDPersonalVC.swift */,
+			);
+			path = Person;
+			sourceTree = "<group>";
+		};
+		C0D83E61230C07B200234BB4 /* Sqlite */ = {
+			isa = PBXGroup;
+			children = (
+				C0D83E62230C086D00234BB4 /* HDSQLiteManager.swift */,
+			);
+			path = Sqlite;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -632,9 +697,11 @@
 				C09BF92C2239251A0017CA74 /* json_value.cpp in Sources */,
 				C09BF91F2239251A0017CA74 /* QARText.swift in Sources */,
 				C09BF9132239251A0017CA74 /* HBAlertView.swift in Sources */,
+				C0D83E63230C086D00234BB4 /* HDSQLiteManager.swift in Sources */,
 				C09BF93A2239251A0017CA74 /* HBNetwork.swift in Sources */,
 				C09BF9312239251A0017CA74 /* HDRSA.m in Sources */,
 				C09BF91C2239251A0017CA74 /* HDSelectVC.swift in Sources */,
+				C0D83E65230C202D00234BB4 /* HDWorldMapNodeModel.swift in Sources */,
 				C09BF92F2239251A0017CA74 /* iFlyWavConverter.m in Sources */,
 				C09BF9202239251A0017CA74 /* QARNode.swift in Sources */,
 				C09BF9272239251A0017CA74 /* QARRadioView.swift in Sources */,
@@ -642,6 +709,7 @@
 				C09BF9112239251A0017CA74 /* HDToastManager.swift in Sources */,
 				C09BF93F2239251A0017CA74 /* Alamofire+Reachability.swift in Sources */,
 				C09BF9212239251A0017CA74 /* QARDetailNode.swift in Sources */,
+				C0D83E49230BEA9F00234BB4 /* ViewController+SelectItem.swift in Sources */,
 				C09BF9102239251A0017CA74 /* HDUtilities.swift in Sources */,
 				C09BF89B223924BF0017CA74 /* AppDelegate.swift in Sources */,
 				C09BF91D2239251A0017CA74 /* HDBaseVC.swift in Sources */,
@@ -650,16 +718,20 @@
 				C09BF9122239251A0017CA74 /* HDScreenInfo.swift in Sources */,
 				C09BF9412239251A0017CA74 /* Alamofire+HBNetworkApiNew.swift in Sources */,
 				C09BF9302239251A0017CA74 /* TTSConfig.m in Sources */,
+				C0D83E4B230BEB0300234BB4 /* ViewController+Touch.swift in Sources */,
 				C0802A6222852EC400B3DF32 /* HDTextAndImageView.swift in Sources */,
 				C09BF9402239251A0017CA74 /* HBNetworkResultType.swift in Sources */,
 				C09BF9392239251A0017CA74 /* HBNetworkCustomer+Promise.swift in Sources */,
 				C09BF91A2239251A0017CA74 /* HDWorldMapIO.swift in Sources */,
 				C09BF9322239251A0017CA74 /* RSAUtil.m in Sources */,
 				C09BF93C2239251A0017CA74 /* Alamofire+Configuration.swift in Sources */,
+				C0D83E5A230BFA3F00234BB4 /* HDPersonalVC.swift in Sources */,
+				C0D83E4D230BEB5B00234BB4 /* ViewController+Pop.swift in Sources */,
 				C09BF9382239251A0017CA74 /* HBNetworkCustomer.swift in Sources */,
 				C09BF93D2239251A0017CA74 /* HBNetworkAPI.swift in Sources */,
 				C09BF9292239251A0017CA74 /* json_writer.cpp in Sources */,
 				C09BF91B2239251A0017CA74 /* HDFloatVC.swift in Sources */,
+				C0D83E56230BFA2300234BB4 /* HDVirtualNodeListVC.swift in Sources */,
 				C09BF92B2239251A0017CA74 /* json_reader.cpp in Sources */,
 				C09BF91E2239251A0017CA74 /* HDNodeModel.swift in Sources */,
 				C09BF9222239251A0017CA74 /* QARAudio.swift in Sources */,

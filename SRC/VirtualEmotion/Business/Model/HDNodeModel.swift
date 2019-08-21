@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-enum HDNodeModelType: Int, Codable {
+enum HDNodeModelType: Int32, Codable {
     case text
     case textAndImage
 }
@@ -19,22 +19,34 @@ class HDNodeModel: Codable {
     var id: String?
     var title: String?
     var subtitle: String?
-    var image: String?
-    var transform: [Float]?
+    var imageData: Data?
+    var transform: String?
     var type: HDNodeModelType?
+    var worldMapHash: Int64?
+    var videoData: Data?
+    var audioData: Data?
+    var createTime: String?
 
     init(id: String? = nil,
          title: String? = "请输入文案",
          subtitle: String? = nil,
-         image: String? = nil,
-         transform: [Float]? = nil,
+         imageData: Data? = nil,
+         videoData: Data? = nil,
+         audioData: Data? = nil,
+         transform: String? = nil,
+         worldMapHash: Int64? = nil,
+         createTime: String? = nil,
          type: HDNodeModelType? = .text) {
         self.id = id
         self.title = title
         self.subtitle = subtitle
-        self.image = image
+        self.imageData = imageData
+        self.videoData = videoData
+        self.audioData = audioData
         self.transform = transform
         self.type = type
+        self.worldMapHash = worldMapHash
+        self.createTime = createTime
     }
 }
 

@@ -112,6 +112,36 @@ func matrix4ToFloatArray(matrix:SCNMatrix4) -> [Float] {
     return tempValue
 }
 
+func matrixFloatArrayToString(floatArray: [Float]) -> String {
+    let stringArray = floatArray.map{ String($0) }
+    return stringArray.joined(separator: ",")
+}
+
+func matrixStringToFloatArray(matrixString: String) -> [Float] {
+    let stringArray = matrixString.split(separator: ",");
+    return stringArray.map{ ($0 as NSString).floatValue }
+}
+
+func matrix4ToString(matrix: SCNMatrix4) -> String {
+    return "\(matrix.m11),\(matrix.m12),\(matrix.m13),\(matrix.m14),\(matrix.m21),\(matrix.m22),\(matrix.m23),\(matrix.m24),\(matrix.m31),\(matrix.m32),\(matrix.m33),\(matrix.m34),\(matrix.m41),\(matrix.m42),\(matrix.m43),\(matrix.m44)"
+}
+
+func matrix4StringToObjc(matrixString: String) -> SCNMatrix4? {
+    let tempArray = matrixString.split(separator: ",")
+    var floats = [Float]()
+    if tempArray.count == 16 {
+        for value in tempArray {
+            let floatValue = (value as NSString).floatValue
+            floats.append(floatValue)
+        }
+        if floats.count == 16 {
+            let matrix4 = SCNMatrix4.init(m11: floats[0], m12: floats[1], m13: floats[2], m14: floats[3], m21: floats[4], m22: floats[5], m23: floats[6], m24: floats[7], m31: floats[8], m32: floats[9], m33: floats[10], m34: floats[11], m41: floats[12], m42: floats[13], m43: floats[14], m44: floats[15])
+            return matrix4
+        }
+    }
+    return nil
+}
+
 func matrixFloatArrayToMatrix4(_ floats:[Float]) -> SCNMatrix4? {
     if floats.count == 16 {
         let matrix4 = SCNMatrix4.init(m11: floats[0], m12: floats[1], m13: floats[2], m14: floats[3], m21: floats[4], m22: floats[5], m23: floats[6], m24: floats[7], m31: floats[8], m32: floats[9], m33: floats[10], m34: floats[11], m41: floats[12], m42: floats[13], m43: floats[14], m44: floats[15])

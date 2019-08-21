@@ -16,6 +16,10 @@ class HDBaseVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    class func instanceFromStoryBoard(storyBoardName: String, vcName: String) -> HDBaseVC? {
+        let storyBoard = UIStoryboard.init(name: storyBoardName, bundle: nil)
+        return storyBoard.instantiateViewController(withIdentifier: vcName) as? HDBaseVC
+    }
 
     /*
     // MARK: - Navigation
