@@ -40,11 +40,11 @@
             </objects>
             <point key="canvasLocation" x="2742" y="-1231"/>
         </scene>
-        <!--Item-->
+        <!--我的-->
         <scene sceneID="nva-oU-TEB">
             <objects>
                 <navigationController id="13U-c0-aeX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="qR1-2a-FkZ"/>
+                    <tabBarItem key="tabBarItem" title="我的" image="Mine" id="qR1-2a-FkZ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ynx-aI-SPc">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -92,11 +92,11 @@
             </objects>
             <point key="canvasLocation" x="-386" y="-802"/>
         </scene>
-        <!--Item-->
+        <!--首页-->
         <scene sceneID="edM-0K-J8g">
             <objects>
                 <navigationController id="6a3-RE-Rp6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="vvE-Fs-Gre"/>
+                    <tabBarItem key="tabBarItem" title="首页" image="Home" id="vvE-Fs-Gre"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MVx-Vd-TbV">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -117,7 +117,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="q4N-wi-nqV">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="q4N-wi-nqV">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -151,4 +151,8 @@
             <point key="canvasLocation" x="1982.608695652174" y="-1231.4732142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Home" width="22" height="22"/>
+        <image name="Mine" width="22" height="22"/>
+    </resources>
 </document>

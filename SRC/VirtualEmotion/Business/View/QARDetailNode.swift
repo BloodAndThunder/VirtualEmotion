@@ -16,14 +16,14 @@ class QARDetailNode: QARNode {
     }
     init(image: UIImage?, text: String?, voiceUrl: URL?, transform: SCNMatrix4 ) {
         super.init()
-        self.geometry = SCNPlane(width: 0.01, height: 0.01)
         //self.opacity = 0.0
-        let detailSKNode = DetailSKScene.init(image: image, text: text, voiceUrl: voiceUrl, size: CGSize(width: 300, height: 300))
+        let detailSKNode = DetailSKScene.init(image: image, text: text, voiceUrl: voiceUrl)
         let plane = SCNPlane(width:1, height: 1)
         plane.firstMaterial?.diffuse.contents = detailSKNode
         plane.firstMaterial?.isDoubleSided = true
         //plane.firstMaterial?.cullMode = .back
         plane.firstMaterial?.normal.intensity = 1.0
+        
         let detailNode = QARNode()
         detailNode.geometry = plane
         detailNode.url = voiceUrl
@@ -31,7 +31,7 @@ class QARDetailNode: QARNode {
         let matrixIdentifier = SCNMatrix4Identity
         let rotate = SCNMatrix4Rotate(matrixIdentifier, Float(Double.pi), 0.0, 1.0, 0.0)
         detailNode.transform = rotate
-        self.scale = SCNVector3Make(0.1, 0.1, 0.1)
+//        self.scale = SCNVector3Make(0.1, 0.1, 0.1)
         self.transform = transform
         self.addChildNode(detailNode)
         

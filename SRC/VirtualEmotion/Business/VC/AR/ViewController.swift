@@ -62,19 +62,6 @@ class ViewController: HDBaseVC, ARSCNViewDelegate {
         }
         self.sceneView.session.run(configuration)
 
-//        // 加载历史数据
-//        HDWorldMapIO.shareInstance.read { (worldMap) in
-//            if let tempWorldMap = worldMap {
-//                configuration.initialWorldMap = tempWorldMap
-//                self.worldMapLoadDone = true
-//            }
-//
-//            // Run the view's session
-//            DispatchToMain(task: {
-//                self.sceneView.session.run(configuration)
-//            })
-//        }
-        
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
@@ -96,17 +83,6 @@ class ViewController: HDBaseVC, ARSCNViewDelegate {
         self.view.addSubview(radioView)
         self.view.addSubview(closeButton)
     }
-    
-//    // 初始化数据
-//    private func loadData() {
-//        self.worldMapLoadDone = false
-//        self.virtureNodeLoadDone = false
-//        DispatchToMain {
-//            self.sceneView.scene.rootNode.childNodes.forEach { node in
-//                node.removeFromParentNode()
-//            }
-//        }
-//    }
     
     private func loadVirtureNodes() {
         // 从数据库中获取数据
@@ -192,9 +168,6 @@ class ViewController: HDBaseVC, ARSCNViewDelegate {
                 case .extending:
                     self.worldMapStatus.text = "好"
                     self.worldMapStatus.backgroundColor = UIColor.orange.withAlphaComponent(0.5)
-                    if self.worldMapLoadDone, self.virtureNodeLoadDone == false {
-                        self.loadVirtureNodes()
-                    }
                 case .mapped:
                     self.worldMapStatus.text = "完美"
                     self.worldMapStatus.backgroundColor = UIColor.green.withAlphaComponent(0.5)
@@ -204,6 +177,7 @@ class ViewController: HDBaseVC, ARSCNViewDelegate {
                         self.saveWorldMapButton.isHidden = false
                     }
                     
+                    // 只有在最好的环境下，才去还原场景
                     if !self.isRecording, self.worldMapLoadDone, self.virtureNodeLoadDone == false {
                         self.loadVirtureNodes()
                     }
@@ -215,7 +189,7 @@ class ViewController: HDBaseVC, ARSCNViewDelegate {
     func currentCameraMatrix() -> SCNMatrix4? {
         if let camera = sceneView.session.currentFrame?.camera {
             var translation = matrix_identity_float4x4;
-            translation.columns.3.z = -0.2;
+            translation.columns.3.z = -1;
             
             // 在当前的摄像头的位置添加一个
             let transform = matrix_multiply(camera.transform, translation);

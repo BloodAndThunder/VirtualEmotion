@@ -62,6 +62,8 @@ class HDVirtualNodeListCell: UITableViewCell {
     
     lazy var worldMapImageView: UIImageView = {
         let imageView = UIImageView.init()
+        imageView.layer.cornerRadius = 4
+        imageView.clipsToBounds = true
         return imageView
     }()
     
