@@ -33,11 +33,8 @@ class DetailSKScene: SKScene {
         shape.physicsBody?.allowsRotation = false
         self.addChild(shape)
         
-        if let originalImage = image,
-            let cgImage = originalImage.cgImage {
-            // 拿到旋转之后的图片
-            let imageToDisplay = UIImage.init(cgImage: cgImage, scale: originalImage.scale, orientation: .up)
-            let imageTexture = SKTexture(image: imageToDisplay)
+        if let fixedImage = image?.fixOrientation() {
+            let imageTexture = SKTexture(image: fixedImage)
             let imageNode = SKSpriteNode(texture: imageTexture)
             
             imageNode.position = CGPoint(x: size.width/2, y: ((size.height - 106) / 2.0 + 96))
@@ -115,33 +112,33 @@ private func computeContextSize(image: UIImage?) -> CGSize {
     var contextSize = CGSize.init(width: 200, height: 80)
     
     // 如果图片不为空
-    if let image = image {
+    if let image = image, let fixedImage = image.fixOrientation() {
         
         // 取最大边嘴比较
-        let delta = Float( image.size.width / image.size.height )
+        let delta = Float( fixedImage.size.width / fixedImage.size.height )
         
         // 图片宽度大于高度
         if delta > 1 {
             
             // 如果图片宽度 + 20 > 800, 用800 做最大宽度
-            if image.size.width > 780 {
-                contextSize = CGSize.init(width: 800, height: image.size.height * (780.0 / image.size.width) + 20 + 80 + 6)
+            if fixedImage.size.width > 780 {
+                contextSize = CGSize.init(width: 800, height: fixedImage.size.height * (780.0 / fixedImage.size.width) + 20 + 80 + 6)
             }
                 // 用 图片宽度加 20 做宽度
             else {
-                contextSize = CGSize.init(width: image.size.width + 20, height: image.size.height + 20 + 80 + 6)
+                contextSize = CGSize.init(width: fixedImage.size.width + 20, height: fixedImage.size.height + 20 + 80 + 6)
             }
             
         }
         else {
             
             // 如果图片宽度 + 20 > 800, 用800 做最大宽度
-            if image.size.height > 886 {
-                contextSize = CGSize.init(width: image.size.width * (886.0 / image.size.height) + 20, height: 886)
+            if fixedImage.size.height > 886 {
+                contextSize = CGSize.init(width: fixedImage.size.width * (886.0 / fixedImage.size.height) + 20, height: 886)
             }
                 // 用 图片宽度加 20 做宽度
             else {
-                contextSize = CGSize.init(width: image.size.width + 20, height: image.size.height + 20 + 80 + 6)
+                contextSize = CGSize.init(width: fixedImage.size.width + 20, height: fixedImage.size.height + 20 + 80 + 6)
             }
             
         }
