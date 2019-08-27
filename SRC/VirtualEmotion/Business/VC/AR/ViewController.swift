@@ -1,4 +1,4 @@
-//
+
 //  ViewController.swift
 //  testARKit
 //
@@ -247,6 +247,8 @@ class ViewController: HDBaseVC, ARSCNViewDelegate {
         sceneView.session.getCurrentWorldMap(completionHandler: {[weak self] (worldMap, error) in
             if let model = worldMap, let data = try? NSKeyedArchiver.archivedData(withRootObject: model, requiringSecureCoding: true) {
                 
+                // 存储的时候，需要记录图片，描述和地理位置
+                
                 // 拿到当前地图数据，组装对应的model
                 let worldMapModel = HDWorldMapNodeModel.init(worldMapHash: worldMap.hashValue, worldMapData: data)
                 
@@ -366,4 +368,9 @@ class ViewController: HDBaseVC, ARSCNViewDelegate {
     var visibleNode: SCNNode?
     
     var lastDistance: CGFloat = 0.0
+    
+    lazy var screenSnapshotImage: UIImageView = {
+        let imageView = UIImageView.init(frame: UIScreen.main.bounds);
+        return imageView
+    }()
 }

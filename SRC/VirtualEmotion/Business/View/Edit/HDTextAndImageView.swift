@@ -103,22 +103,28 @@ class HDTextAndImageView: UIView {
     }
     
     @objc private func addImageFunction() {
-        let photoPicker = HBPhotoPickerVC()
-        getTopVC { (topvc) in
-            if let top = topvc {
-                top.present(photoPicker, animated: false, completion: {
-                    photoPicker.formAlbum()
-                    photoPicker.selectedPhoto = {[weak self] image in
-                        if let userImage = image {
-                            self?.addImageView.image = userImage
-                            self?.imageFlag = .user
-                            self?.addImageView.contentMode = .scaleAspectFill
-                            self?.updateSubmmitButtonStatus()
+        // end editing
+        textView.resignFirstResponder()
+        
+        HBAlertView.showAlert(title: "选择图片来源", message: nil, otherButtons: [("从相册选择", .default), ("拍照获取", .default)], style: .actionSheet, actionHandle: { (alertView, index) in
+            let photoPicker = HBPhotoPickerVC()
+            getTopVC { (topvc) in
+                if let top = topvc {
+                    top.present(photoPicker, animated: false, completion: {
+                        if index == 0 { photoPicker.fromAlbum() }
+                        else { photoPicker.fromCamera() }
+                        photoPicker.selectedPhoto = {[weak self] image in
+                            if let userImage = image {
+                                self?.addImageView.image = userImage
+                                self?.imageFlag = .user
+                                self?.addImageView.contentMode = .scaleAspectFill
+                                self?.updateSubmmitButtonStatus()
+                            }
                         }
-                    }
-                })
+                    })
+                }
             }
-        }
+        });
     }
     
     @objc private func submmit() {

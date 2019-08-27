@@ -20,7 +20,7 @@ class HBPhotoPickerVC: HDBaseVC, UINavigationControllerDelegate, UIImagePickerCo
     
     var selectedPhoto: selectePhotoBlock?
     
-    func formAlbum() {
+    func fromAlbum() {
         //判断设置是否支持图片库
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
             //初始化图片控制器
@@ -32,13 +32,35 @@ class HBPhotoPickerVC: HDBaseVC, UINavigationControllerDelegate, UIImagePickerCo
             //指定图片控制器类型
             picker.sourceType = UIImagePickerController.SourceType.photoLibrary
             //设置是否允许编辑
-            picker.allowsEditing = false
+            picker.allowsEditing = true
             //弹出控制器，显示界面
             self.present(picker, animated: true, completion: {
                 () -> Void in
             })
         }else{
             print("读取相册错误")
+        }
+    }
+    
+    func fromCamera() {
+        //判断设置是否支持图片库
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            //初始化图片控制器
+            let picker = UIImagePickerController()
+            //设置背景色
+            picker.view.backgroundColor = .white
+            //设置代理
+            picker.delegate = self
+            //指定图片控制器类型
+            picker.sourceType = UIImagePickerController.SourceType.camera
+            //设置是否允许编辑
+            picker.allowsEditing = true
+            //弹出控制器，显示界面
+            self.present(picker, animated: true, completion: {
+                () -> Void in
+            })
+        }else{
+            print("使用相机错误")
         }
     }
     
