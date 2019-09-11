@@ -46,5 +46,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>一直获取位置信息</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>在使用期间获取位置信息</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>使用定位信息固化虚拟物的地址</string>
 </dict>
 </plist>

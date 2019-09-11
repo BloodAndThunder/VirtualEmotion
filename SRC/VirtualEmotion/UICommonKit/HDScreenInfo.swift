@@ -10,3 +10,5 @@ import UIKit
 
 let HDStatusBarHeight = UIApplication.shared.statusBarFrame.height
 let HDScreenFrame = UIScreen.main.bounds
+let HDScreenWidth = HDScreenFrame.width
+let HDScreenHeight = HDScreenFrame.height

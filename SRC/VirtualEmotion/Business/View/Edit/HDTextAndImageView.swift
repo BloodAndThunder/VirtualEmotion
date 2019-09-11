@@ -13,11 +13,27 @@ private enum HDTextAndImageViewFlag {
     case user
 }
 
+public enum HDTextAndImageViewType {
+    case virtualNode
+    case worldMap
+}
+
 typealias HDTextAndImageViewCallBack = (String, UIImage) -> Void
+typealias HDTextAndImageViewClickLocation = ()->Void
 
 class HDTextAndImageView: UIView {
     
     public var completion: HDTextAndImageViewCallBack?
+    public var clickLocation: HDTextAndImageViewClickLocation?
+    
+    private var type: HDTextAndImageViewType = .virtualNode
+    
+    init(frame: CGRect, type: HDTextAndImageViewType = .virtualNode) {
+        super.init(frame: frame)
+        self.type = type
+        self.addSubviews()
+        self.layoutStaticSubviews()
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,6 +53,10 @@ class HDTextAndImageView: UIView {
         self.textContentView.addSubview(self.placeHolderLabel)
         self.textContentView.addSubview(self.numbersLabel)
         self.contentView.addSubview(addImageView)
+        if type == .worldMap {
+            self.contentView.addSubview(locationImageView)
+            self.contentView.addSubview(locationLabel)
+        }
         self.contentView.addSubview(submmitButton)
     }
     
@@ -49,7 +69,7 @@ class HDTextAndImageView: UIView {
             make.left.equalTo(40)
             make.right.equalTo(-40)
             make.centerY.equalToSuperview()
-            make.height.equalTo(406)
+            make.height.equalTo(type == .virtualNode ? 406 : 440)
         }
         
         self.textContentView.snp.makeConstraints { (make) in
@@ -89,12 +109,37 @@ class HDTextAndImageView: UIView {
             make.height.equalTo(200)
         }
         
-        self.submmitButton.snp.makeConstraints { (make) in
-            make.top.equalTo(self.addImageView.snp.bottom).offset(10)
-            make.left.equalTo(10)
-            make.right.equalTo(-10)
-            make.height.equalTo(44)
+        if type == .worldMap {
+            
+            self.locationImageView.snp.makeConstraints { (make) in
+                make.top.equalTo(self.addImageView.snp.bottom).offset(10)
+                make.left.equalTo(10)
+                make.width.height.equalTo(24)
+            }
+            
+            self.locationLabel.snp.makeConstraints { (make) in
+                make.top.equalTo(self.addImageView.snp.bottom).offset(10)
+                make.left.equalTo(self.locationImageView.snp.right).offset(10)
+                make.right.equalTo(-10)
+                make.height.equalTo(24)
+            }
+            
+            self.submmitButton.snp.makeConstraints { (make) in
+                make.top.equalTo(self.locationImageView.snp.bottom).offset(10)
+                make.left.equalTo(10)
+                make.right.equalTo(-10)
+                make.height.equalTo(44)
+            }
         }
+        else {
+            self.submmitButton.snp.makeConstraints { (make) in
+                make.top.equalTo(self.addImageView.snp.bottom).offset(10)
+                make.left.equalTo(10)
+                make.right.equalTo(-10)
+                make.height.equalTo(44)
+            }
+        }
+        
     }
     
     @objc private func hiddenKeyboard() {
@@ -130,6 +175,10 @@ class HDTextAndImageView: UIView {
     @objc private func submmit() {
         // 可以提交的时候，这里返回需要的数据
         completion?(self.textView.text, self.addImageView.image!)
+    }
+    
+    @objc private func jumpToLocation() {
+        clickLocation?()
     }
     
     private func checkDataIsReady() -> Bool {
@@ -190,7 +239,7 @@ class HDTextAndImageView: UIView {
         view.font = UIFont.systemFont(ofSize: 14)
         view.backgroundColor = UIColor.white
         view.textColor = UIColor.init(hex: "9B9B9B")
-        view.text = "此时此刻，留下足迹..."
+        view.text = self.type == .virtualNode ? "此时此刻，留下足迹..." : "添加地理位置的详细描述"
         return view
     }()
     
@@ -211,6 +260,25 @@ class HDTextAndImageView: UIView {
         imageView.clipsToBounds = true
         imageView.isUserInteractionEnabled = true
         return imageView
+    }()
+    
+    lazy var locationImageView: UIImageView = {
+        let imageView = UIImageView.init(image: #imageLiteral(resourceName: "Location"))
+        return imageView
+    }()
+    
+    lazy var locationLabel: UILabel = {
+        let label = UILabel.init(frame: .zero)
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = HDTextGrayColor
+        label.text = "您需要添加一个地理位置"
+        label.backgroundColor = .white
+        label.isUserInteractionEnabled = true
+        
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(jumpToLocation))
+        label.addGestureRecognizer(tap)
+        
+        return label
     }()
     
     lazy var submmitButton: UIButton = {

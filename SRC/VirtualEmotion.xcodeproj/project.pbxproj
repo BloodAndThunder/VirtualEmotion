@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C051F69523291CCF00BFD617 /* HDLocationTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C051F69423291CCF00BFD617 /* HDLocationTransform.swift */; };
 		C0802A40228421DB00B3DF32 /* HDPreConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0802A3F228421DB00B3DF32 /* HDPreConfig.swift */; };
 		C0802A5E228527F500B3DF32 /* HBPhotoPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0802A5D228527F500B3DF32 /* HBPhotoPickerVC.swift */; };
 		C0802A6222852EC400B3DF32 /* HDTextAndImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0802A6122852EC400B3DF32 /* HDTextAndImageView.swift */; };
@@ -78,6 +79,10 @@
 		C0D83E60230C075000234BB4 /* FMDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0D83E5B230C072C00234BB4 /* FMDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C0D83E63230C086D00234BB4 /* HDSQLiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D83E62230C086D00234BB4 /* HDSQLiteManager.swift */; };
 		C0D83E65230C202D00234BB4 /* HDWorldMapNodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D83E64230C202D00234BB4 /* HDWorldMapNodeModel.swift */; };
+		C0EB60952317F576006D5089 /* HDChooseLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EB60942317F576006D5089 /* HDChooseLocationVC.swift */; };
+		C0EB60A42319196E006D5089 /* HDChooseLocationVC+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EB60A32319196E006D5089 /* HDChooseLocationVC+TableView.swift */; };
+		C0EB60A6231920F5006D5089 /* HDChooseLocationVC+Mapview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EB60A5231920F5006D5089 /* HDChooseLocationVC+Mapview.swift */; };
+		C0EB60A823192158006D5089 /* HDChooseLocationVC+SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EB60A723192158006D5089 /* HDChooseLocationVC+SearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -98,6 +103,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C051F69423291CCF00BFD617 /* HDLocationTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLocationTransform.swift; sourceTree = "<group>"; };
 		C0802A3F228421DB00B3DF32 /* HDPreConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDPreConfig.swift; sourceTree = "<group>"; };
 		C0802A5D228527F500B3DF32 /* HBPhotoPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBPhotoPickerVC.swift; sourceTree = "<group>"; };
 		C0802A6122852EC400B3DF32 /* HDTextAndImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDTextAndImageView.swift; sourceTree = "<group>"; };
@@ -193,6 +199,10 @@
 		C0D83E5C230C072D00234BB4 /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
 		C0D83E62230C086D00234BB4 /* HDSQLiteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSQLiteManager.swift; sourceTree = "<group>"; };
 		C0D83E64230C202D00234BB4 /* HDWorldMapNodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDWorldMapNodeModel.swift; sourceTree = "<group>"; };
+		C0EB60942317F576006D5089 /* HDChooseLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDChooseLocationVC.swift; sourceTree = "<group>"; };
+		C0EB60A32319196E006D5089 /* HDChooseLocationVC+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HDChooseLocationVC+TableView.swift"; sourceTree = "<group>"; };
+		C0EB60A5231920F5006D5089 /* HDChooseLocationVC+Mapview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HDChooseLocationVC+Mapview.swift"; sourceTree = "<group>"; };
+		C0EB60A723192158006D5089 /* HDChooseLocationVC+SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HDChooseLocationVC+SearchBar.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				C09BF8AF223925190017CA74 /* HDUtilities.swift */,
+				C051F69423291CCF00BFD617 /* HDLocationTransform.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -356,6 +367,7 @@
 		C09BF8C12239251A0017CA74 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				C0EB60902317F517006D5089 /* Map */,
 				C0D83E53230BF9FC00234BB4 /* Person */,
 				C0D83E51230BF9D900234BB4 /* WorldMapList */,
 				C0D83E47230BEA2700234BB4 /* AR */,
@@ -609,6 +621,17 @@
 			path = Sqlite;
 			sourceTree = "<group>";
 		};
+		C0EB60902317F517006D5089 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				C0EB60942317F576006D5089 /* HDChooseLocationVC.swift */,
+				C0EB60A32319196E006D5089 /* HDChooseLocationVC+TableView.swift */,
+				C0EB60A5231920F5006D5089 /* HDChooseLocationVC+Mapview.swift */,
+				C0EB60A723192158006D5089 /* HDChooseLocationVC+SearchBar.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -642,6 +665,11 @@
 				TargetAttributes = {
 					C09BF896223924BF0017CA74 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -693,11 +721,14 @@
 				C09BF9352239251A0017CA74 /* NSString+Base64.m in Sources */,
 				C09BF9362239251A0017CA74 /* NSData+CommonCrypto.m in Sources */,
 				C09BF9342239251A0017CA74 /* AES.m in Sources */,
+				C051F69523291CCF00BFD617 /* HDLocationTransform.swift in Sources */,
 				C09BF9332239251A0017CA74 /* HDCrypto.m in Sources */,
 				C09BF92C2239251A0017CA74 /* json_value.cpp in Sources */,
+				C0EB60A42319196E006D5089 /* HDChooseLocationVC+TableView.swift in Sources */,
 				C09BF91F2239251A0017CA74 /* QARText.swift in Sources */,
 				C09BF9132239251A0017CA74 /* HBAlertView.swift in Sources */,
 				C0D83E63230C086D00234BB4 /* HDSQLiteManager.swift in Sources */,
+				C0EB60952317F576006D5089 /* HDChooseLocationVC.swift in Sources */,
 				C09BF93A2239251A0017CA74 /* HBNetwork.swift in Sources */,
 				C09BF9312239251A0017CA74 /* HDRSA.m in Sources */,
 				C09BF91C2239251A0017CA74 /* HDSelectVC.swift in Sources */,
@@ -708,12 +739,14 @@
 				C09BF9372239251A0017CA74 /* NSData+Base64.m in Sources */,
 				C09BF9112239251A0017CA74 /* HDToastManager.swift in Sources */,
 				C09BF93F2239251A0017CA74 /* Alamofire+Reachability.swift in Sources */,
+				C0EB60A823192158006D5089 /* HDChooseLocationVC+SearchBar.swift in Sources */,
 				C09BF9212239251A0017CA74 /* QARDetailNode.swift in Sources */,
 				C0D83E49230BEA9F00234BB4 /* ViewController+SelectItem.swift in Sources */,
 				C09BF9102239251A0017CA74 /* HDUtilities.swift in Sources */,
 				C09BF89B223924BF0017CA74 /* AppDelegate.swift in Sources */,
 				C09BF91D2239251A0017CA74 /* HDBaseVC.swift in Sources */,
 				C09BF9192239251A0017CA74 /* HDNodeDataIO.swift in Sources */,
+				C0EB60A6231920F5006D5089 /* HDChooseLocationVC+Mapview.swift in Sources */,
 				C0802A40228421DB00B3DF32 /* HDPreConfig.swift in Sources */,
 				C09BF9122239251A0017CA74 /* HDScreenInfo.swift in Sources */,
 				C09BF9412239251A0017CA74 /* Alamofire+HBNetworkApiNew.swift in Sources */,

@@ -248,6 +248,12 @@ class ViewController: HDBaseVC, ARSCNViewDelegate {
             if let model = worldMap, let data = try? NSKeyedArchiver.archivedData(withRootObject: model, requiringSecureCoding: true) {
                 
                 // 存储的时候，需要记录图片，描述和地理位置
+                let editView = HDTextAndImageView.init(frame: HDScreenFrame, type: .worldMap)
+                self?.view.addSubview(editView)
+                editView.clickLocation = {
+                    let vc = HDChooseLocationVC()
+                    self?.present(vc, animated: true, completion: nil)
+                }
                 
                 // 拿到当前地图数据，组装对应的model
                 let worldMapModel = HDWorldMapNodeModel.init(worldMapHash: worldMap.hashValue, worldMapData: data)
