@@ -18,9 +18,27 @@ class HDChooseLocationVC: HDBaseVC {
         self.view.addSubview(mapView)
         self.view.addSubview(tableView)
         self.view.addSubview(searchBar)
+        self.view.addSubview(button)
+        
+        layoutStaticSubviews()
+    }
+    
+    func layoutStaticSubviews() {
+        self.button.snp_makeConstraints { (make) in
+            make.centerY.equalTo(self.searchBar)
+            make.width.equalTo(60)
+            make.left.equalTo(self.searchBar.snp_right).offset(10)
+            make.height.equalTo(35);
+        }
+    }
+    
+    @objc func sureButtonClick() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     var maptItems: [MKMapItem]?
+    
+    var selectedIndexPath: IndexPath?
     
     lazy var locationManager: CLLocationManager = {
         let locationManager = CLLocationManager.init()
@@ -47,7 +65,7 @@ class HDChooseLocationVC: HDBaseVC {
     }()
     
     lazy var searchBar: UISearchBar = {
-       let view = UISearchBar.init(frame: CGRect.init(x: 20, y: HDStatusBarHeight, width: HDScreenWidth - 40, height: 44))
+       let view = UISearchBar.init(frame: CGRect.init(x: 20, y: HDStatusBarHeight, width: HDScreenWidth - 120, height: 44))
         view.placeholder = "搜地点"
         view.backgroundImage = UIImage()
         view.backgroundColor = .clear
@@ -67,4 +85,13 @@ class HDChooseLocationVC: HDBaseVC {
         return geocoder
     }()
 
+    lazy var button: UIButton = {
+        let button = UIButton.init()
+        button.backgroundColor = UIColor.init(hex: "#00AE66")
+        button.layer.cornerRadius = 4
+        button.setTitle("确定", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.addTarget(self, action: #selector(sureButtonClick), for: .touchUpInside)
+        return button
+    }()
 }

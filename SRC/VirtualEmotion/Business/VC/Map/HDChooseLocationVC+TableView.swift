@@ -27,9 +27,16 @@ extension HDChooseLocationVC: UITableViewDelegate, UITableViewDataSource {
         let maptItem = self.maptItems![indexPath.row]
         cell?.textLabel?.text = maptItem.name
         cell?.detailTextLabel?.text = maptItem.placemark.thoroughfare
+        cell?.selectionStyle = .none
+        cell?.accessoryType = ( selectedIndexPath?.row == indexPath.row ) ? .checkmark : .none
         return cell ?? UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 这里什么都不做
+        self.selectedIndexPath = indexPath
+        tableView.reloadData()
+    }
     
     
 }
