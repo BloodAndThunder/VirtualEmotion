@@ -9,7 +9,23 @@
 import UIKit
 import MapKit
 
-extension HDChooseLocationVC: CLLocationManagerDelegate {
+extension HDChooseLocationVC: CLLocationManagerDelegate, MKMapViewDelegate {
+    
+    
+    func addAnnotationInMapView() {
+        if let selectedLocationItem = selectedLocationItem {
+            if mapView.annotations.count > 0 {
+                mapView.removeAnnotations(mapView.annotations)
+            }
+            
+            let selectedLocation = MKPointAnnotation()
+            selectedLocation.coordinate = selectedLocationItem.placemark.coordinate
+            mapView.addAnnotation(selectedLocation)
+            
+            // 居中处理
+            mapView.setCenter(selectedLocationItem.placemark.coordinate, animated: true)
+        }
+    }
     
     func reverseGeocoder(location: CLLocation) {
         
@@ -47,4 +63,23 @@ extension HDChooseLocationVC: CLLocationManagerDelegate {
         }
     }
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard annotation is MKPointAnnotation else { return nil }
+        
+        let identifier = "Annotation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView!.canShowCallout = false
+        } else {
+            annotationView!.annotation = annotation
+        }
+        
+        return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        self.view.endEditing(true)
+    }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 private enum HDTextAndImageViewFlag {
     case add
@@ -18,13 +19,14 @@ public enum HDTextAndImageViewType {
     case worldMap
 }
 
-typealias HDTextAndImageViewCallBack = (String, UIImage) -> Void
+typealias HDTextAndImageViewCallBack = (String, UIImage, MKMapItem?) -> Void
 typealias HDTextAndImageViewClickLocation = ()->Void
 
 class HDTextAndImageView: UIView {
     
     public var completion: HDTextAndImageViewCallBack?
     public var clickLocation: HDTextAndImageViewClickLocation?
+    public var seletedLocationItem: MKMapItem?
     
     private var type: HDTextAndImageViewType = .virtualNode
     
@@ -174,7 +176,7 @@ class HDTextAndImageView: UIView {
     
     @objc private func submmit() {
         // 可以提交的时候，这里返回需要的数据
-        completion?(self.textView.text, self.addImageView.image!)
+        completion?(self.textView.text, self.addImageView.image!, seletedLocationItem)
     }
     
     @objc private func jumpToLocation() {

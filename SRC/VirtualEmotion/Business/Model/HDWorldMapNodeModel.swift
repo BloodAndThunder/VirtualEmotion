@@ -12,6 +12,9 @@ import ARKit
 class HDWorldMapNodeModel: Codable {
     var id: String?
     var title: String?
+    var locationLatitude: Double?
+    var locationLongitude: Double?
+    var locationName: String?
     var createTime: String?
     var worldMapHash: Int?
     var imageData: Data?
@@ -19,7 +22,10 @@ class HDWorldMapNodeModel: Codable {
     var worldMapData: Data?
     
     init(id: String? = nil,
-         title: String? = "请输入文案",
+         title: String? = nil,
+         locationLatitude: Double? = nil,
+         locationLongitude: Double? = nil,
+         locationName: String? = nil,
          createTime: String? = nil,
          virtualCount: Int? = nil,
          imageData: Data? = nil,
@@ -27,6 +33,9 @@ class HDWorldMapNodeModel: Codable {
          worldMapData: Data? = nil) {
         self.id = id
         self.title = title
+        self.locationLatitude = locationLatitude
+        self.locationLongitude = locationLongitude
+        self.locationName = locationName
         self.imageData = imageData
         self.createTime = createTime
         self.worldMapHash = worldMapHash

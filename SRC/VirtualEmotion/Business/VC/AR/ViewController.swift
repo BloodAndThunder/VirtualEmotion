@@ -252,24 +252,39 @@ class ViewController: HDBaseVC, ARSCNViewDelegate {
                 self?.view.addSubview(editView)
                 editView.clickLocation = {
                     let vc = HDChooseLocationVC()
+                    vc.locationSelectedCallback = {[weak editView] mapItem in
+                        editView?.seletedLocationItem = mapItem
+                    }
                     self?.present(vc, animated: true, completion: nil)
                 }
                 
-                // 拿到当前地图数据，组装对应的model
-                let worldMapModel = HDWorldMapNodeModel.init(worldMapHash: worldMap.hashValue, worldMapData: data)
-                
-                // 缓存当前worldMap
-                self?.worldMap = model
-                
-                // 存储到本地数据库
-                HDSQLiteManager.shared.insertWorldMapNode(worldMapNode: worldMapModel)
-                
-                // 更改状态
-                self?.worldMapDataSavedDone = true
-                
-                // 地图数据存储成功，可以添加虚拟坐标，存储本地mapbutton hidden
-                self?.addButton.isHidden = false
-                self?.saveWorldMapButton.isHidden = true
+                // 提交按钮对应的回调
+                editView.completion = { [weak self, editView] text, image, mapItem in
+                    
+                    editView.removeFromSuperview()
+                    
+                    // 拿到当前地图数据，组装对应的model
+                    let worldMapModel = HDWorldMapNodeModel.init(title: text,
+                                                                 locationLatitude: mapItem?.placemark.coordinate.latitude,
+                                                                 locationLongitude: mapItem?.placemark.coordinate.longitude,
+                                                                 locationName: mapItem?.name,
+                                                                 imageData: image.pngData(),
+                                                                 worldMapHash: worldMap.hashValue,
+                                                                 worldMapData: data)
+                    
+                    // 缓存当前worldMap
+                    self?.worldMap = model
+                    
+                    // 存储到本地数据库
+                    HDSQLiteManager.shared.insertWorldMapNode(worldMapNode: worldMapModel)
+                    
+                    // 更改状态
+                    self?.worldMapDataSavedDone = true
+                    
+                    // 地图数据存储成功，可以添加虚拟坐标，存储本地mapbutton hidden
+                    self?.addButton.isHidden = false
+                    self?.saveWorldMapButton.isHidden = true
+                }
             }
         })
     }

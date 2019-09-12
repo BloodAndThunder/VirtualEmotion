@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension HDChooseLocationVC: UITableViewDelegate, UITableViewDataSource {
+extension HDChooseLocationVC: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.maptItems?.count ?? 0
     }
@@ -28,15 +28,29 @@ extension HDChooseLocationVC: UITableViewDelegate, UITableViewDataSource {
         cell?.textLabel?.text = maptItem.name
         cell?.detailTextLabel?.text = maptItem.placemark.thoroughfare
         cell?.selectionStyle = .none
-        cell?.accessoryType = ( selectedIndexPath?.row == indexPath.row ) ? .checkmark : .none
+        cell?.accessoryType = ( selectedLocationItem == maptItem ) ? .checkmark : .none
         return cell ?? UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // 这里什么都不做
-        self.selectedIndexPath = indexPath
+        if let selectedLocationItem = self.maptItems?[indexPath.row] {
+            self.selectedLocationItem = selectedLocationItem
+        }
+        else {
+            self.selectedLocationItem = nil
+        }
+        
+        // 添加大头针
+        addAnnotationInMapView()
+        
         tableView.reloadData()
     }
     
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.isDragging {
+            self.view.endEditing(true)
+        }
+    }
     
 }

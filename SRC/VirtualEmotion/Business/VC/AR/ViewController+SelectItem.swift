@@ -31,7 +31,7 @@ extension ViewController: HDSelectViewDelegate {
             // 在这里增加一个编辑界面用于用户post content
             let editView = HDTextAndImageView.init(frame: HDScreenFrame)
             self.view.addSubview(editView)
-            editView.completion = {[weak self] (text, image) in
+            editView.completion = {[weak self] (text, image, _) in
                 let voiceUrl = Bundle.main.url(forResource: "abc", withExtension: "wav")!
                 let node = QARDetailNode(image: image, text: text, voiceUrl: voiceUrl, transform: transform)
                 self?.sceneView.scene.rootNode.addChildNode(node)

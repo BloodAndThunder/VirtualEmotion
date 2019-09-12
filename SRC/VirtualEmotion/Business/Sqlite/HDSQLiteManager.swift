@@ -31,7 +31,7 @@ class HDSQLiteManager: NSObject {
     
     //／MARK:创建表
     open func createWorldMapDBTable(){
-        let sql = "CREATE TABLE IF NOT EXISTS WORLDMAPDATABASE ('Id' INTEGER PRIMARY KEY AUTOINCREMENT, 'CreateTime' DATETIME, 'Hash' INTEGER, 'Data' BLOB, 'ImageData' BLOB)"
+        let sql = "CREATE TABLE IF NOT EXISTS WORLDMAPDATABASE ('Id' INTEGER PRIMARY KEY AUTOINCREMENT, 'CreateTime' DATETIME, 'WorldMapHash' INTEGER, 'WorldMapData' BLOB, 'ImageData' BLOB, 'LocationLatitude' DOUBLE, 'LocationLongitude' DOUBLE, 'LocationName' TEXT, 'Description' TEXT)"
         dbQueue.inDatabase { (db) in
             let result = db.executeUpdate(sql, withArgumentsIn: [])
             if result {
@@ -56,12 +56,17 @@ class HDSQLiteManager: NSObject {
     
     //／MARK:插入表数据
     open func insertWorldMapNode(worldMapNode: HDWorldMapNodeModel) {
-        let sql = "insert into WORLDMAPDATABASE (CreateTime, Hash, Data, ImageData) values(?,?,?,?)"
+        let sql = "insert into WORLDMAPDATABASE (CreateTime, WorldMapHash, WorldMapData, ImageData, LocationLatitude, LocationLongitude, LocationName, Description) values(?,?,?,?,?,?,?,?)"
         dbQueue.inDatabase { (db) in
             let args = [currentTime(),
-                        worldMapNode.worldMapHash ?? 0,
-                        worldMapNode.worldMapData ?? Data(),
-                        worldMapNode.imageData ?? Data()] as [Any]
+                        worldMapNode.worldMapHash ?? NSNull.init(),
+                        worldMapNode.worldMapData ?? NSNull.init(),
+                        worldMapNode.imageData ?? NSNull.init(),
+                        worldMapNode.locationLatitude ?? NSNull.init(),
+                        worldMapNode.locationLongitude ?? NSNull.init(),
+                        worldMapNode.locationName ?? NSNull.init(),
+                        worldMapNode.title ?? NSNull.init()
+                ] as [Any]
             let result = db.executeUpdate(sql, withArgumentsIn: args)
             if result {
                 print("插入worldMapNode数据成功")
@@ -75,14 +80,14 @@ class HDSQLiteManager: NSObject {
         let sql = "insert into VIRTUALNODEDATABASE (CreateTime, WorldMapHash, Title, Subtitle, ImageData, VideoData, AudioData, Transform, Type) values(?,?,?,?,?,?,?,?,?)"
         dbQueue.inDatabase { (db) in
             let args = [currentTime(),
-                        virtualNode.worldMapHash ?? 0,
-                        virtualNode.title ?? "",
-                        virtualNode.subtitle ?? "",
-                        virtualNode.imageData ?? Data(),
-                        virtualNode.videoData ?? Data(),
-                        virtualNode.audioData ?? Data(),
-                        virtualNode.transform ?? "",
-                        virtualNode.type?.rawValue ?? 0] as [Any]
+                        virtualNode.worldMapHash ?? NSNull.init(),
+                        virtualNode.title ?? NSNull.init(),
+                        virtualNode.subtitle ?? NSNull.init(),
+                        virtualNode.imageData ?? NSNull.init(),
+                        virtualNode.videoData ?? NSNull.init(),
+                        virtualNode.audioData ?? NSNull.init(),
+                        virtualNode.transform ?? NSNull.init(),
+                        virtualNode.type?.rawValue ?? NSNull.init()] as [Any]
             let result = db.executeUpdate(sql, withArgumentsIn: args)
             if result {
                 print("插入virtualNode数据成功")
@@ -154,7 +159,7 @@ class HDSQLiteManager: NSObject {
     }
     
     open func queryWorldMapData(hashValue:Int64, completion: @escaping(_ data: Data?) -> Void) {
-        let sql = "select Data from WORLDMAPDATABASE where Hash = \(hashValue)"
+        let sql = "select WorldMapData from WORLDMAPDATABASE where WorldMapHash = \(hashValue)"
         dbQueue.inDatabase { (db) in
             guard let resultSet = db.executeQuery(sql, withArgumentsIn: []) else {
                 completion(nil)
@@ -164,7 +169,7 @@ class HDSQLiteManager: NSObject {
             var data:Data?
             
             while resultSet.next() == true {
-                data = resultSet.data(forColumn: "Data")
+                data = resultSet.data(forColumn: "WorldMapData")
             }
             completion(data)
         }
